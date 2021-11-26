@@ -1,0 +1,79 @@
+<html>
+	<head>
+		<title>babyfood</title>
+	</head>
+	<body>
+
+
+	</body>
+
+	<script>
+		var count = 30;
+		var eList = ['a','b']; //essential
+		var sList = ['d','e','f','g','h','i','j','k','l','m']; //selected
+
+		var bList = [
+				['a','d'],
+				['a','e'],
+				['a','f'],
+				['a','g'],
+				['a','h'],
+				['a','i'],
+				['b','h']
+
+		]; //blackList
+
+		var rList= [];//result
+		while(rList.length < count){
+			var tempList = [];
+			for(var ei = 0 ; ei < eList.length ; ei++){
+				ev = eList[ei];
+				var temp = [];
+				temp.push(ev);
+				for(var i = 0 ; i < 2 ; i++){
+					var random  = parseInt(Math.random() * sList.length);
+					if(!temp.includes(sList[random])){ //중복제거
+						temp.push(sList[random]);
+					}else{
+						i--;
+					}
+					
+				}
+				if(checkBlakcList(temp)){
+					tempList.push(temp);	
+				}else{
+					ei--;
+				}
+				
+			};	
+
+			rList.push(tempList);
+		}
+		
+
+
+		
+		console.log(rList);
+		
+
+		function checkBlakcList(temp){
+
+			var bFlag = true;
+			bList.forEach(function(bv,bi){
+				if(temp.includes(bv[0])  && temp.includes(bv[1])){
+					bFlag = false;
+				}
+
+			});
+			
+			return bFlag;
+				
+			
+			
+		}
+
+	</script>
+
+</html>
+
+
